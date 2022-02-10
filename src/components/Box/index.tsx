@@ -1,11 +1,18 @@
 import styled from 'styled-components'
-import { useEffect } from "react";
+import React, { ReactNode, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { activeBoxAction, deactiveBoxAction} from "../../store/action-creatos";
+import {ActionCreatorTypes, StateTypes} from "../../store/types";
+import { Dispatch } from 'redux';
 
-const BoxComponent = ({index, children}) => {
-    const active = useSelector(state => state.array[index])
-    const ds = useDispatch()
+type Props = {
+    index: number,
+    children: ReactNode
+}
+
+const BoxComponent = ({index, children}: Props) => {
+    const active = useSelector((state: StateTypes) => state.array[index])
+    const ds = useDispatch<Dispatch<ActionCreatorTypes>>()
 
     useEffect(() => {
         if(active) {
@@ -23,7 +30,7 @@ const BoxComponent = ({index, children}) => {
     )
 }
 
-const Box = styled.div`
+const Box = styled.div<{ active: boolean }>`
   width: 100%;
   flex: 1;
   max-width: 250px;

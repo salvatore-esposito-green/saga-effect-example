@@ -1,3 +1,7 @@
+interface AuthLoginServiceApi {
+    (user: string, password: string): Promise<T>
+}
+
 export const authServiceApi = async (user, password) => {
     return await new Promise((success, fail) => {
         setTimeout(()=> {
