@@ -5,7 +5,7 @@ import {
     all,
     fork
 } from 'redux-saga/effects'
-import { ActionTypes } from "../actions";
+import { FETCH_ASYNC_REQUEST } from "../actions";
 import { getFetchApis } from '../../services/get-fetch.api'
 
 /**
@@ -13,7 +13,7 @@ import { getFetchApis } from '../../services/get-fetch.api'
  * @return generator worker
  * */
 export function* watchAsyncFetch() {
-    yield takeEvery(ActionTypes[0].FETCH_ASYNC_REQUEST, asyncSaga);
+    yield takeEvery(FETCH_ASYNC_REQUEST, asyncSaga);
 }
 
 /**

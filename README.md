@@ -1,70 +1,41 @@
-# Getting Started with Create React App
+# Saga Effect Example
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a example of how create a saga effects with some different flows.
 
-## Available Scripts
+Open your devtool and explore
 
-In the project directory, you can run:
+## async Saga
 
-### `npm start`
+Saga is always asynchronous
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## differences between takeEvery vs takeLast
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Saga can management the concurrency actions
 
-### `npm test`
+## fork
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+With fork you can call a non-blocking fc 
 
-### `npm run build`
+normally each iterator waits for the previous task to be completed to continue
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+With fork the flow go on
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## linear flow vs parallel flow
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+normally every tasks is reproduced with a linear flow, task by task
 
-### `npm run eject`
+there is a method for invoke a parallel flow and some tasks go on simultaneously
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## race 
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+in some flow you want that there is only one winner action
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+in this case you can use a race between two or more tasks
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+when the first is finish, all the others are blokcked
 
-## Learn More
+## login flow
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+there is a small example for the login work flow
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+because is peculiarity, like a while cycle that produce a non-blocking call until an other action like 'logout' or 'failure' was called
